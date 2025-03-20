@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>English-Janala</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+
+    <!-- daisyUI setup -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- font setup -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- sweet alert setup -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <style>
+      .font-poppins {
+        font-family: "Poppins", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      .active{
+        background-color: #422AD5;
+        color: white;
+      }
+      .active > img{
+        filter: brightness(0) invert(1);
+      }
+    </style>
+  </head>
+  <body class="font-poppins">
+    <!--Repo Link: https://github.com/programming-hero-web-course1/b11-a6-english-janala-MMunim90 -->
+
+    <!-- Live Site: https://english-janala-mmunim90.netlify.app/ -->
+
+    <header id="top-heading" class="sticky top-0 z-[100000] w-full hidden">
+      <div class="navbar bg-white/95 shadow-sm px-20">
+        <div class="navbar-start">
+          <h2 class="text-xl font-bold">English</h2>
+          <img src="assets/logo.png" alt="" />
+          <h2 class="text-xl font-bold">জানালা</h2>
+        </div>
+
+        <div class="navbar-end gap-4">
+          <a
+            href="#faq"
+            class="btn group hover:bg-[#422AD5] text-[#422AD5] hover:text-white border-[#422AD5]"
+            ><img
+              class="group-hover:brightness-0 group-hover:invert"
+              src="assets/fa-circle-question.png"
+              alt=""
+            />FAQ</a
+          >
+          <a
+            href="#learn"
+            class="btn group hover:bg-[#422AD5] text-[#422AD5] hover:text-white border-[#422AD5]"
+            ><img
+              class="group-hover:brightness-0 group-hover:invert"
+              src="assets/fa-book-open.png"
+              alt=""
+            />Learn</a
+          >
+          <a  onclick="window.location.reload();" class="btn group hover:bg-[#422AD5] text-[#422AD5] hover:text-white border-[#422AD5]"
+            ><img
+              class="group-hover:brightness-0 group-hover:invert"
+              src="assets/fa-arrow-right-from-bracket.png"
+              alt=""
+            />Logout</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- banner section -->
+      <section id="section1" class="w-11/12 mx-auto flex justify-between hidden">
+        <div class="flex flex-col justify-center gap-6">
+          <h1 class="font-bold text-5xl">
+            <span class="text-[#00BCFF]">English</span> is Easy!!!
+          </h1>
+          <p class="font-medium text-2xl">
+            আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা
+            <br />
+            আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে
+            <br />
+            যাবে অন্য একটি Level এ
+          </p>
+          
+          <form id="loginForm">
+            <input class="p-3 rounded pr-44" type="text" id="username" placeholder="Enter Your Name">
+            <br><br>
+            <input class="p-3 rounded pr-44" type="password" id="password" placeholder="Enter Login Code(123456)">
+            <br><br>
+            <button class="text-white font-semibold text-sm bg-[#422AD5] border-none rounded px-4 py-3" type="submit" onclick="checkPassword(event)">Get Started</button>
+        </form>
+        
+        </div>
+        <div>
+          <img src="assets/hero-student.png" alt="" />
+        </div>
+      </section>
+
+
+      <!-- Let's Learn Vocabularies section -->
+      <section id="learn" class="w-11/12 mx-auto mt-[120px] hidden">
+        <h1 class="font-bold text-5xl text-center">
+          <span class="text-[#00BCFF]">Let's</span> Learn Vocabularies
+        </h1>
+
+        <div id="levels-container" class="mt-9 flex gap-5 justify-center">
+
+        </div>
+        <div id="wordsLevel-container" class="mt-9 grid grid-cols-3 gap-8 justify-center bg-[#F8F8F8] p-8 rounded-3xl">
+
+            <div class="flex flex-col items-center text-center gap-5 col-span-full" id="first-text">
+                <p class="font-semibold">আপনি এখনো কোনো Lesson Select করেন নি</p>
+                <h1 class="font-bold text-3xl">একটি Lesson Select করুন</h1>
+            </div> 
+        </div>
+      </section>
+
+      <!-- spinner -->
+      <section id="spinner" class="text-center py-[200px] hidden">
+        <span class="loading loading-dots loading-xl"></span>
+       </section>
+
+      <!-- Frequently Asked Questions section -->
+      <section id="faq" class="w-11/12 mx-auto mt-[120px] hidden">
+        <h1 class="font-bold text-5xl text-center">
+          <span class="text-[#00BCFF]">Frequently</span> Asked Questions
+        </h1>
+
+        <div class="mt-16 flex flex-col gap-5">
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              What is the difference between var, let, and const?
+            </div>
+            <div class="collapse-content text-sm">
+              <div
+                class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
+              >
+                <table class="table">
+                  <!-- head -->
+                  <thead>
+                    <tr>
+                      <th>var</th>
+                      <th>let</th>
+                      <th>const</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- row 1 -->
+                    <tr>
+                      <td>
+                        The scope of a var variable is functional or global
+                        scope.
+                      </td>
+                      <td>The scope of a let variable is block scope.</td>
+                      <td>The scope of a const variable is block scope.</td>
+                    </tr>
+                    <!-- row 2 -->
+                    <tr>
+                      <td>
+                        It can be updated and re-declared in the same scope.
+                      </td>
+                      <td>
+                        It can be updated but cannot be re-declared in the same
+                        scope.
+                      </td>
+                      <td>
+                        It can neither be updated or re-declared in any scope.
+                      </td>
+                    </tr>
+                    <!-- row 3 -->
+                    <tr>
+                      <td>It can be declared without initialization.</td>
+                      <td>It can be declared without initialization.</td>
+                      <td>It cannot be declared without initialization.</td>
+                    </tr>
+                    <!-- row 4 -->
+                    <tr>
+                      <td>
+                        It can be accessed without initialization as its default
+                        value is “undefined”.
+                      </td>
+                      <td>
+                        It cannot be accessed without initialization otherwise
+                        it will give ‘referenceError’.
+                      </td>
+                      <td>
+                        It cannot be accessed without initialization, as it
+                        cannot be declared without initialization.
+                      </td>
+                    </tr>
+                    <!-- row 5 -->
+                    <tr>
+                      <td>These variables are hoisted.</td>
+                      <td>
+                        These variables are hoisted but stay in the temporal
+                        dead zone untill the initialization.
+                      </td>
+                      <td>
+                        These variables are hoisted but stays in the temporal
+                        dead zone until the initialization.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              What is the difference between map(), forEach(), and filter()
+            </div>
+            <div class="collapse-content text-sm">
+              <div
+                class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
+              >
+                <table class="table">
+                  <!-- head -->
+                  <thead>
+                    <tr>
+                      <th>map()</th>
+                      <th>forEach()</th>
+                      <th>filter()</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- row 1 -->
+                    <tr>
+                      <td>
+                        The map() function receives a function as a parameter
+                        and will apply the code on each element and returns an
+                        entirely new array.
+                      </td>
+                      <td>
+                        The forEach() function receives a function as an
+                        argument and it applies the same code to every element.
+                      </td>
+                      <td>
+                        The filter() method receives function as a parameter. It
+                        runs the function for each element in the array.
+                      </td>
+                    </tr>
+                    <!-- row 2 -->
+                    <tr>
+                      <td>Returns an entirely new array</td>
+                      <td>
+                        It will not return anything, it just applies the
+                        conditions to every element.
+                      </td>
+                      <td>
+                        It will return the new array which satisfies the
+                        condition applied.
+                      </td>
+                    </tr>
+                    <!-- row 3 -->
+                    <tr>
+                      <td>It will not change the original array.</td>
+                      <td>It will not change the original array.</td>
+                      <td>It will not change the original array.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              What are arrow functions, and how are they different from regular
+              functions?
+            </div>
+            <div class="collapse-content text-sm">
+              <b>Arrow functions in JavaScript:</b><br />
+              An arrow function is a shorter syntax for writing functions in
+              JavaScript. The symbol of arrow function is <b>() =></b>.
+              <br /><br /><b
+                >Difference between Arrow function and Regular function:</b
+              ><br /><br>
+              <div
+                class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100"
+              >
+                <table class="table">
+                  <!-- head -->
+                  <thead>
+                    <tr>
+                      <th>Aspect</th>
+                      <th>Arrow Functions</th>
+                      <th>Regular Functions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- row 1 -->
+                    <tr>
+                      <td>Syntax</td>
+                      <td>Shorter and more concise</td>
+                      <td>Requires the function keyword</td>
+                    </tr>
+                    <!-- row 2 -->
+                    <tr>
+                      <td>arguments Object</td>
+                      <td>Does not have its own arguments object</td>
+                      <td>Has its own arguments object</td>
+                    </tr>
+                    <!-- row 3 -->
+                    <tr>
+                      <td>Use as Constructor</td>
+                      <td>Cannot be used as a constructor</td>
+                      <td>Can be used as a constructor with new</td>
+                    </tr>
+                    <!-- row 4 -->
+                    <tr>
+                      <td>Method Definitions</td>
+                      <td>Cannot be used as methods within objects</td>
+                      <td>Can be used to define methods in objects</td>
+                    </tr>
+                    <!-- row 5 -->
+                    <tr>
+                      <td>Return Value</td>
+                      <td>Implicit return for single expressions</td>
+                      <td>Must use return keyword</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              How do JavaScript Promises work?
+            </div>
+            <div class="collapse-content text-sm">
+              JavaScript <b>Promises</b> make handling
+              <b
+                >asynchronous operations like API calls, file loading, or time
+                delays easier</b
+              >. Basically, a Promise object represents a
+              <b>pending state</b> in the most common sense: the promise will
+              eventually be fulfilled at a later date. <br /><br />
+              <b>It can be in one of three states:</b><br /><br />
+
+              <b>Pending:</b> The task is in the initial state. <br />
+
+              <b>Fulfilled:</b> The task was completed successfully, and the
+              result is available. <br />
+
+              <b>Rejected:</b> The task failed, and an error is provided.
+            </div>
+          </div>
+
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] border border-base-300"
+          >
+            <input type="radio" name="my-accordion-3" />
+            <div class="collapse-title font-semibold">
+              How does closure work in JavaScript?
+            </div>
+            <div class="collapse-content text-sm">
+              A <b>closure</b> is a function that allows access to variables
+              from its outer function and global variables, even after the outer
+              function has finished executing. <br /><br />
+
+              <b>How closures work in JavaScript:</b> <br />
+              1. Declare a closure that would eventually access an outer
+              variable balance from the outer function. <br />
+              2. After using the outer variable in an inner most function, that
+              closure will help us deduct 100 from it, whenever that outer
+              function is called. <br />
+              3. <b>Currentbalance()</b> can access outer variable balance hence
+              balance is deducted by 100 each time <b>initaccount()</b> method
+              is called. <br /><br />
+              <img class="rounded-lg" src="assets/code.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer sm:footer-horizontal bg-white p-10 w-full px-20 mt-[120px] border-t-[1px] border-gray-300 flex justify-between"
+    >
+      <aside>
+        <div class="flex items-center">
+          <h2 class="text-xl font-bold">English</h2>
+          <img src="assets/logo.png" alt="" />
+          <h2 class="text-xl font-bold">জানালা</h2>
+        </div>
+        <p>
+            ইংরেজি শিখুন সহজে
+          <br />
+          Providing ED-Tech Applications since 2025
+        </p>
+      </aside>
+      <nav>
+        <h6 class="footer-title">Follow us</h6>
+        <div class="grid grid-flow-col gap-4 items-center">
+          <a href="https://www.facebook.com/programmingHero" target="_blank">
+            <img class="hover:scale-130 duration-300" src="assets/fb-thumb.png" alt="">
+          </a>
+          <a href="https://www.youtube.com/@ProgrammingHero" target="_blank">
+            <img class="hover:scale-130 duration-300" src="assets/youtube-thumb.png" alt="">
+          </a>
+          <a href="https://github.com/ProgrammingHero1" target="_blank">
+            <img class="hover:scale-130 duration-300" src="assets/github-thumb.png" alt="">
+          </a>
+        </div>
+      </nav>
+    </footer>
+
+<!-- modal -->
+    
+<dialog id="word_details" class="modal modal-bottom sm:modal-middle">
+  <div class="bg-white p-6 rounded-xl">
+    <div id="details-container">
+
+    </div>
+    <div class="">
+      <form method="dialog">
+        
+        <button class="btn bg-[#422AD5] text-white rounded-lg">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+    <script src="script/script.js"></script>
+  </body>
+</html>
